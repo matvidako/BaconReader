@@ -31,8 +31,8 @@
             android:paddingTop="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="4dp"
-            android:ellipsize="end"
-            android:maxLines="4" />
+            android:maxLines="1"
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/article_subtitle"
@@ -42,8 +42,6 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="16dp"
-            android:maxLines="1"
-            android:singleLine="true"
             android:ellipsize="end" />
     </LinearLayout>
 
