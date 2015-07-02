@@ -62,7 +62,6 @@
                         android:fontFamily="sans-serif-condensed"
                         android:lineSpacingMultiplier="0.9"
                         android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
-                        android:textSize="@dimen/detail_title_text_size"
                         android:textStyle="bold" />
 
                     <TextView
