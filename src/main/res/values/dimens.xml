@@ -9,5 +9,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="size_details_header_image">220dp</dimen>
     <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_standard">16dp</dimen>
 
 </resources>
