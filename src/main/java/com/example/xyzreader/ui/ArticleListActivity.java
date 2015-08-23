@@ -12,6 +12,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
@@ -101,8 +103,8 @@ public class ArticleListActivity extends AppCompatActivity implements
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
         int columnCount = getResources().getInteger(R.integer.list_column_count);
-        StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(sglm);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, columnCount);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
     }
 
     @Override
@@ -147,13 +149,11 @@ public class ArticleListActivity extends AppCompatActivity implements
                                     mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                                     System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
                                     DateUtils.FORMAT_ABBREV_ALL).toString()
-                                    + " by <font color='#79BEDB'>"
-                                    + mCursor.getString(ArticleLoader.Query.AUTHOR)
-                                    + "</font>"));
+                                    + " by "
+                                    + mCursor.getString(ArticleLoader.Query.AUTHOR)));
             holder.thumbnailView.setImageUrl(
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
-            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         }
 
         @Override
@@ -163,7 +163,7 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public DynamicHeightNetworkImageView thumbnailView;
+        public NetworkImageView thumbnailView;
         public TextView titleView;
         public TextView subtitleView;
 
